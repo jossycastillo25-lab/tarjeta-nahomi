@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>¡Feliz Cumpleaños Nahomi! 🎉</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css"> 
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+        
+        <div id="mensaje-inicial">
+            <img src="flork.png" alt="Flork saludando" class="img-fluid mb-4" width="120">
+            <h2 class="saludo-cursiva">¡Hola, da click en el regalo!</h2>
+        </div>
+
+        <div class="regalo-container">
+            <div class="regalo" onclick="abrirRegalo()">
+                <img src="regalocerrado.png" alt="Regalo cerrado" class="img-fluid" width="250" id="regalo">
+                <img src="regaloabierto.png" alt="Regalo abierto" class="img-fluid" width="250" id="regaloAb" style="display: none;">
+            </div>
+        </div>
+        
+        <audio id="audio" controls style="display: none">
+            </audio>
+        
+        <div class="card mt-4 mb-5 tarjeta-personalizada" id="contenido" style="display: none;">
+            <div class="card-body">
+                <h1 class="card-title saludo-cursiva">¡Feliz Cumpleaños **Nahomi**!</h1>
+                
+                <div style="margin: 20px auto; max-width: 345px;">
+                    <iframe 
+                        src="https://assets.pinterest.com/ext/embed.html?id=2111131072080703" 
+                        height="714" 
+                        width="345" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        allow="autoplay"  style="display: block; margin: 0 auto; border-radius: 10px;">
+                    </iframe>
+                </div>
+                
+                <p class="card-text mensaje-cursiva mt-4">
+                    Que la vida te sonría siempre, que la salud te acompañe, que el amor te rodee y que la felicidad te llene el corazón. Que Dios te bendiga!
+                </p>
+                
+                <p class="card-text mt-3 firma-cursiva">Son Mis Mejores Deseos.</p>
+
+            </div>
+        </div>
+        
+    </div>
+  </div>
+</div>
+
+<div class="balloon balloon-1"></div>
+<div class="balloon balloon-2"></div>
+<div class="balloon balloon-3"></div>
+<div class="balloon balloon-4"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.1/dist/confetti.browser.min.js"></script>
+
+
+<script>
+    const defaults = {
+        ticks: 150,
+        gravity: 0.5,
+        decay: 0.94,
+        startVelocity: 40,
+        zIndex: 1000
+    };
+
+    function shootConfetti() {
+        confetti({
+            ...defaults,
+            particleCount: 200, 
+            spread: 360,
+            scalar: 1.5,
+            colors: ['#ffffff', '#ff69b4', '#ffd700', '#00bfff'] 
+        });
+    }
+
+    function shootFireworks() {
+        const fireworkDefaults = {
+            ...defaults,
+            ticks: 200, 
+            gravity: 1.2, 
+            startVelocity: 60, 
+        };
+        
+        // Gran explosión (Muchos Fuegos Artificiales)
+        confetti({
+            ...fireworkDefaults,
+            particleCount: 250, 
+            spread: 360,
+            scalar: 3, 
+            shapes: ['circle', 'star'],
+        });
+
+        // Segunda explosión para el efecto de "muchos"
+        setTimeout(() => {
+            confetti({
+                ...fireworkDefaults,
+                particleCount: 150,
+                spread: 360,
+                scalar: 2,
+                shapes: ['circle'],
+            });
+        }, 300); 
+    }
+
+    function abrirRegalo() {
+        // 1. Mostrar la tarjeta de cumpleaños 
+        document.getElementById('contenido').style.display = 'block';
+
+        // 2. Ocultar el mensaje inicial de Flork
+        document.getElementById('mensaje-inicial').style.display = 'none';
+        
+        // 3. Cambiar la imagen del regalo
+        document.getElementById('regalo').style.display = 'none';
+        document.getElementById('regaloAb').style.display = 'block';
+
+        // 4. Se eliminó la función de reproducción del MP3.
+
+        // 5. LANZAR CONFETI Y FUEGOS ARTIFICIALES SIMULTÁNEAMENTE (al abrir la caja)
+        shootConfetti();
+        shootFireworks(); 
+    }
+</script>
+</body>
+</html>
